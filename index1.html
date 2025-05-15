@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles1.css">
+  <title>SonderLogic</title>
+</head>
+<body>
+  <div class="branding">
+    <span>SonderLogic</span>
+    <div class="logo-placeholder"></div>
+  </div>
+
+  <div id="mySidebar" class="sidebar">
+    <button class="closebtn" id="closeBtn" onclick="closeNav()">&times;</button>
+    <a href="#">About</a>
+    <a href="#">Ethos</a>
+    <a href="#">Sign Up</a>
+  </div>
+
+  <div id="sidebarOverlay" class="sidebar-overlay" onclick="closeNav()"></div>
+
+  <button class="openbtn" id="openBtn" onclick="openNav()">&#9776;</button>
+
+  <header>
+    <h1>Think out loud. With AI.</h1>
+    <p>Until SonderLogic launches, you can begin now. Anytime you have a thought, open your AI and reflect. The process is the product.</p>
+    <div class="subline">A mirror that goes as deep as you're willing to take it.</div>
+  </header>
+
+  <section class="reflect-box">
+    <input type="text" id="thoughtInput" placeholder="What’s on your mind?">
+    <p style="color:white; font-size:0.9rem;">Use this space to begin the practice.</p>
+  </section>
+
+  <section class="functional-widget">
+    <h2>Save a Thought</h2>
+    <textarea id="thoughtArea" placeholder="Type your thought here..."></textarea>
+    <br>
+    <button onclick="saveThought()">Save Thought</button>
+    <p class="saved-message" id="saveMsg" style="display:none;">Thought saved locally ✅</p>
+  </section>
+
+  <section id="why" class="philosophy">
+    <h2>Why SonderLogic?</h2>
+    <p>Because thinking is the most powerful thing we do. And yet, we rarely see our thoughts reflected back with clarity. SonderLogic changes that—by making thought visible, traceable, and transformative.</p>
+  </section>
+
+  <div class="cta">
+    <button>Start the Practice</button>
+  </div>
+
+  <section class="signup">
+    <h2 style="color:white;">Get Early Access</h2>
+    <input type="email" placeholder="Enter your email" />
+    <button>Notify Me</button>
+  </section>
+
+  <footer>
+    <p><em>Everyone I've told has said the same thing:</em><br />
+    "I can actually see that being big."
+    <br><br><span style="opacity:0.6">The universe thinks like us.</span></p>
+  </footer>
+
+  
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("closeBtn").style.display = "block";
+      document.getElementById("openBtn").classList.add("hidden");
+      document.getElementById("sidebarOverlay").style.display = "block";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("closeBtn").style.display = "none";
+      document.getElementById("sidebarOverlay").style.display = "none";
+      setTimeout(() => {
+        document.getElementById("openBtn").classList.remove("hidden");
+      }, 300);
+    }
+
+    function saveThought() {
+      const thought = document.getElementById("thoughtArea").value;
+      if (thought.trim()) {
+        localStorage.setItem("sonderlogic_thought", thought);
+        document.getElementById("saveMsg").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("saveMsg").style.display = "none";
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
